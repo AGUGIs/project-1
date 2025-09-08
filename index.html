@@ -68,11 +68,11 @@
             <form id="surveyForm" novalidate>
                 <div>
                     <label for="name">Имя:</label><br />
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" />
                 </div>
                 <div>
                     <label for="email">Электронная почта:</label><br />
-                    <input type="email" id="email" name="email" />
+                    <input type="email" id="email" name="email" placeholder="example@email.ru" />
                 </div>
                 <div>
                     <label for="phone">Телефон:</label><br />
@@ -158,6 +158,17 @@
             const date = form.date.value;
             const comments = form.comments.value.trim();
 
+			let isValid = true;
+			
+			if (name.length < 2) {
+				alert('Пожалуйста введите имя полностью')
+				isValid = false
+			}
+			const emailR = /^[^\s@] + @[^\s@] + \.[^\s@] + $/
+			if (!emailR.text(email));{
+				alert('введите корректный адрес электронной почты')
+				isValid = false
+			}
             if (!name) {
                 alert('Пожалуйста, введите имя');
                 return;
