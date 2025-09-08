@@ -158,3 +158,17 @@ footer {
 footer p {
     margin: var(--space-1) 0;
 }
+.hero {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+                url('assets/hero-bg.jpg') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: var(--space-5) var(--space-3);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-5);
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: var(--space-3);
+}
