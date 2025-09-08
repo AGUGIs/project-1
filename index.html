@@ -10,6 +10,15 @@
     <meta property="og:title" content="Заголовок страницы">
     <meta property="og:description" content="Описание страницы">
     <meta property="og:image" content="https://.../link-to-image.jpg">
+    <!-- Стиль для сообщения об успехе из файла кнопка.txt -->
+    <style>
+        #successMessage {
+            color: green;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <!-- Шапка сайта -->
@@ -31,7 +40,8 @@
         <section id="services">
             <h2>Продажа картофеля</h2>
             <p>Наша компания на протяжении миллионов миллиардов лет продавала картофель</p>
-            <a href="frontend34.html">Связаться с нами</a> <!-- Якорная ссылка внутри страницы -->
+            <!-- Измененная ссылка: теперь она открывает модальное окно -->
+            <a href="#" id="openSurveyLink">Связаться с нами</a>
         </section>
         <!-- Секция 2 с якорем -->
         <section id="portfolio">
@@ -47,8 +57,142 @@
     </main>
     <!-- Подвал сайта -->
     <footer>
-        <p> <p>&copy; 2025 CHIK CHIRIK. Все права защищены.</p>
-        </p>>Телефон: +7 (111) 111-11-11</p>
+        <p>&copy; 2025 CHIK CHIRIK. Все права защищены.</p>
+        <p>Телефон: +7 (111) 111-11-11</p>
     </footer>
+
+    <!-- Код модального окна из файла кнопка.txt -->
+    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
+        <div style="background-color:#fff; margin: 10% auto; padding: 20px; width: 300px; position: relative;">
+            <button id="closeModalBtn" style="position:absolute; top:5px; right:5px;">X</button>
+            <form id="surveyForm" novalidate>
+                <div>
+                    <label for="name">Имя:</label><br />
+                    <input type="text" id="name" name="name" />
+                </div>
+                <div>
+                    <label for="email">Электронная почта:</label><br />
+                    <input type="email" id="email" name="email" />
+                </div>
+                <div>
+                    <label for="phone">Телефон:</label><br />
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" />
+                </div>
+                <div>
+                    <label for="country">Страна:</label><br />
+                    <select id="country" name="country">
+                        <option value="">-- Выберите страну --</option>
+                        <option value="russia">Россия</option>
+                        <option value="belarus">Беларусь</option>
+                        <option value="kazakhstan">Казахстан</option>
+                        <option value="other">Другая</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date">Дата:</label><br />
+                    <input type="date" id="date" name="date" />
+                </div>
+                <div>
+                    <label for="comments">Комментарии:</label><br />
+			<textarea id="comments" name="comments" rows="4" cols="30"></textarea>
+                </div>
+                <div>
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+            <div id="successMessage" style="display: none; text-align: center; margin-top: 20px; color: green; font-weight: bold;">
+                Спасибо за анкету!
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript из файла кнопка.txt с модификациями -->
+    <script>
+        // Получаем элементы
+        const openSurveyLink = document.getElementById('openSurveyLink'); // Ссылка "Связаться с нами"
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modal = document.getElementById('modal');
+        const form = document.getElementById('surveyForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Открытие модального окна по клику на ссылку
+        openSurveyLink.addEventListener('click', (event) => {
+            event.preventDefault(); // Предотвращаем переход по ссылке
+            modal.style.display = 'block';
+            successMessage.style.display = 'none';
+            form.style.display = 'block';
+            form.reset();
+        });
+
+        // Закрытие модального окна по клику на крестик
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Маска для телефона
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', () => {
+            let val = phoneInput.value.replace(/\D/g, '');
+            if (val.startsWith('7')) {
+                val = val.substring(1);
+            }
+            if (val.length > 10) val = val.substring(0, 10);
+            let formatted = '+7 ';
+            if (val.length > 0) formatted += '(' + val.substring(0, Math.min(3, val.length));
+            if (val.length >= 3) formatted += ') ';
+            if (val.length > 3) formatted += val.substring(3, Math.min(6, val.length));
+            if (val.length >= 6) formatted += '-';
+            if (val.length > 6) formatted += val.substring(6, Math.min(8, val.length));
+            if (val.length >= 8) formatted += '-';
+            if (val.length > 8) formatted += val.substring(8, 10);
+            phoneInput.value = formatted;
+        });
+
+        // Обработка отправки формы
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = form.name.value.trim();
+            const email = form.email.value.trim();
+            const phone = form.phone.value.trim();
+            const country = form.country.value;
+            const date = form.date.value;
+            const comments = form.comments.value.trim();
+
+            if (!name) {
+                alert('Пожалуйста, введите имя');
+                return;
+            }
+            if (!email) {
+                alert('Пожалуйста, введите электронную почту');
+                return;
+            }
+            if (!phone || phone.length < 18) {
+                alert('Пожалуйста, введите корректный номер телефона');
+                return;
+            }
+            if (!country) {
+                alert('Пожалуйста, выберите страну');
+                return;
+            }
+            if (!date) {
+                alert('Пожалуйста, выберите дату');
+                return;
+            }
+            if (!comments) {
+                alert('Пожалуйста, введите комментарии');
+                return;
+            }
+
+            // Показываем сообщение об успехе
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+            successMessage.textContent = 'Спасибо за анкету!';
+
+            // Автоматически закрываем модальное окно через 5 секунд
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
