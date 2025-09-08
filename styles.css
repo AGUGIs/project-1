@@ -43,3 +43,118 @@ html, body {
     font-family: var(--font-body);
     line-height: 1.6;
 }
+/* Стили для шапки */
+.site-header {
+    background-color: var(--color-bg);
+    padding: var(--space-3);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.site-header__logo {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.site-nav__list {
+    list-style: none;
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav__link {
+    text-decoration: none;
+    color: var(--color-fg);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius);
+    transition: background-color 0.3s ease;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+    background-color: var(--color-primary);
+    color: white;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Стили для "хлебных крошек" */
+.breadcrumbs {
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--color-bg);
+    margin-bottom: var(--space-4);
+}
+
+.breadcrumbs__link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.breadcrumbs__link:hover,
+.breadcrumbs__link:focus-visible {
+    text-decoration: underline;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.breadcrumbs__separator {
+    margin: 0 var(--space-2);
+    color: var(--color-muted);
+}
+
+.breadcrumbs__current {
+    font-weight: bold;
+    color: var(--color-fg);
+}
+
+/* Стили для основного контента */
+main {
+    padding: var(--space-4) var(--space-3);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: var(--space-5);
+    padding: var(--space-4);
+    background-color: var(--color-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-3);
+    color: var(--color-primary);
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-2);
+    color: var(--color-fg);
+}
+
+p {
+    margin-bottom: var(--space-3);
+    line-height: 1.7;
+}
+
+/* Стили для подвала */
+footer {
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    text-align: center;
+    padding: var(--space-3);
+    margin-top: var(--space-5);
+}
+
+footer p {
+    margin: var(--space-1) 0;
+}
