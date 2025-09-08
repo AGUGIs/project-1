@@ -164,8 +164,8 @@
 				alert('Пожалуйста введите имя полностью')
 				isValid = false
 			}
-			const emailR = /^[^\s@] + @[^\s@] + \.[^\s@] + $/
-			if (!emailR.text(email));{
+			const emailR = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+			if (!emailR.test(email)) {
 				alert('введите корректный адрес электронной почты')
 				isValid = false
 			}
