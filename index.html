@@ -72,18 +72,19 @@
     </footer>
 
     <!-- Код модального окна из файла кнопка.txt -->
-    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index: 1000;">
-        <div style="background-color:#fff; margin: 10% auto; padding: 20px; width: 300px; position: relative;">
-            <button id="closeModalBtn" style="position:absolute; top:5px; right:5px;">X</button>
-            <form id="surveyForm" novalidate>
-                <div>
-                    <label for="name">Имя:</label><br />
-                    <input type="text" id="name" name="name" placeholder="Введите ваше имя" />
-                </div>
-                <div>
-                    <label for="email">Электронная почта:</label><br />
-                    <input type="email" id="email" name="email" placeholder="example@email.ru" />
-                </div>
+	<div id="modal" class="modal" style="display:none;">
+    	<div class="modal__content">
+        	<button id="closeModalBtn" class="modal__close-btn">X</button>
+        	<form id="surveyForm" class="form" novalidate>
+            <!-- Поля формы -->
+            	<div class="form__group">
+                	<label for="name" class="form__label">Имя:</label>
+                	<input type="text" id="name" name="name" class="form__input" placeholder="Введите ваше имя" />
+            	</div>
+            	<div class="form__group">
+                	<label for="email" class="form__label">Электронная почта:</label>
+                	<input type="email" id="email" name="email" class="form__input" placeholder="example@email.ru" />
+            	</div>
                 <div>
                     <label for="phone">Телефон:</label><br />
                     <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" />
@@ -106,15 +107,13 @@
                     <label for="comments">Комментарии:</label><br />
 			<textarea id="comments" name="comments" rows="4" cols="30"></textarea>
                 </div>
-                <div>
-                    <button type="submit">Отправить</button>
-                </div>
-            </form>
-            <div id="successMessage" style="display: none; text-align: center; margin-top: 20px; color: green; font-weight: bold;">
-                Спасибо за анкету!
-            </div>
+			<button type="submit" class="form__submit-btn">Отправить</button>
+	    </form>
+        <div id="successMessage" class="form__success-message">
+            Спасибо за анкету!
         </div>
     </div>
+</div>
 
     <!-- JavaScript из файла кнопка.txt с модификациями -->
     <script>
